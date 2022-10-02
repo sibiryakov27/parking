@@ -1,30 +1,23 @@
-CREATE TABLE car_types (
-    car_type_id INTEGER PRIMARY KEY,
-    car_type VARCHAR(64)
-);
-
 CREATE TABLE cars (
-    car_number VARCHAR(9) PRIMARY KEY,
-    car_type_id INTEGER,
+    car_id INTEGER PRIMARY KEY,
+    car_number VARCHAR(9) NOT NULL,
+    car_type VARCHAR(32),
     registration_certificate VARCHAR(16),
-    car_model VARCHAR(32),
-    FOREIGN KEY (car_type_id) REFERENCES car_types(car_type_id)
+    car_model VARCHAR(32)
 );
 
 CREATE TABLE parking_spaces (
     parking_space_id INTEGER PRIMARY KEY,
-    price_per_hour DECIMAL(5,2),
-    places_in_total INTEGER,
-    places_for_disabled INTEGER
+    is_busy BOOLEAN
 );
 
 CREATE TABLE bookings (
     booking_id INTEGER PRIMARY KEY,
-    car_number VARCHAR(9),
+    car_id INTEGER,
     parking_space_id INTEGER,
     start_time TIMESTAMP,
     end_time TIMESTAMP,
     total_price DECIMAL(10,2),
-    FOREIGN KEY (car_number) REFERENCES cars(car_number),
+    FOREIGN KEY (car_id) REFERENCES cars(car_id),
     FOREIGN KEY (parking_space_id) REFERENCES parking_spaces(parking_space_id)
 );
