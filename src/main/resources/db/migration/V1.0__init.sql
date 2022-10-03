@@ -8,7 +8,7 @@ CREATE TABLE cars (
 
 CREATE TABLE parking_spaces (
     parking_space_id INTEGER PRIMARY KEY,
-    is_busy BOOLEAN
+    occupied BOOLEAN
 );
 
 CREATE TABLE bookings (
