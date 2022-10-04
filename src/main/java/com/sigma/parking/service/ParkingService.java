@@ -1,6 +1,7 @@
 package com.sigma.parking.service;
 
 import com.sigma.parking.data.dto.BookingDTO;
+import com.sigma.parking.data.dto.CarDTO;
 import com.sigma.parking.data.entity.BookingEntity;
 import com.sigma.parking.data.entity.CarEntity;
 import com.sigma.parking.data.entity.ParkingSpaceEntity;
@@ -41,5 +42,10 @@ public class ParkingService {
         }
         bookingEntity = bookingRepository.save(bookingEntity);
         return modelMapper.map(bookingEntity, BookingDTO.class);
+    }
+
+    public CarDTO removeCarAndAllRelatedData(String carNumber) {
+        Optional<CarEntity> car = carRepository.findByCarNumber(carNumber);
+        return modelMapper.map(car.get(), CarDTO.class);
     }
 }
