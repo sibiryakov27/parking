@@ -14,6 +14,5 @@ import javax.validation.constraints.NotNull;
 public class ParkingSpaceDTO {
     @NotNull
     private Integer id;
-    @NotNull
     private Boolean occupied;
 }

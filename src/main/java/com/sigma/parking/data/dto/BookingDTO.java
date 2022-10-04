@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -15,13 +16,16 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BookingDTO {
-    @NotNull
     private Integer id;
     @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss")
     private Timestamp startTime;
     @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss")
     private Timestamp endTime;
     private BigDecimal totalPrice;
+    @Valid
+    @NotNull
     private CarDTO car;
+    @Valid
+    @NotNull
     private ParkingSpaceDTO parkingSpace;
 }

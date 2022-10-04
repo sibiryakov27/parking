@@ -6,14 +6,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 @Data
 @Accessors(chain = true)
 @NoArgsConstructor
 @AllArgsConstructor
 public class CarDTO {
-    @NotNull
+    @Pattern(regexp = "^[A-Za-z]\\d{3}[A-Za-z]{2}\\d{1,3}$")
     private String carNumber;
     private CarType carType;
     private String registrationCertificate;
