@@ -14,7 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.math.BigDecimal;
-import java.sql.Timestamp;
+import java.util.Date;
 
 @Data
 @Accessors(chain = true)
@@ -27,10 +27,10 @@ public class BookingEntity {
     private Integer id;
 
     @Column(name = "start_time")
-    private Timestamp startTime;
+    private Date startTime;
 
     @Column(name = "end_time")
-    private Timestamp endTime;
+    private Date endTime;
 
     @Column(name = "total_price")
     private BigDecimal totalPrice;

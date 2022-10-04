@@ -5,11 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
-import java.sql.Timestamp;
+import java.util.Date;
 
 @Data
 @Accessors(chain = true)
@@ -17,10 +18,12 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 public class BookingDTO {
     private Integer id;
-    @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss")
-    private Timestamp startTime;
-    @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss")
-    private Timestamp endTime;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")  // Я не понимаю, почему эта аннотация не работает
+    private Date startTime;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") // Я не понимаю, почему эта аннотация не работает
+    private Date endTime;
     private BigDecimal totalPrice;
     @Valid
     @NotNull

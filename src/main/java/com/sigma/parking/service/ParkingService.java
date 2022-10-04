@@ -54,7 +54,7 @@ public class ParkingService {
         return saveBooking(booking);
     }
 
-    public CarDTO removeCarAndAllRelatedData(String carNumber) {
+    public CarDTO deleteCarAndAllRelatedData(String carNumber) {
         Optional<CarEntity> car = carRepository.findByCarNumber(carNumber);
         if (car.isEmpty()) {
             throw new NotFoundException("Car with such number cannot be found [carNumber = " + carNumber + "]");

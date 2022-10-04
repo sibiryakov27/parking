@@ -20,7 +20,7 @@ import javax.validation.ConstraintViolationException;
 @ControllerAdvice
 public class ParkingExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(value = {BaseException.class})
+    @ExceptionHandler(BaseException.class)
     public ResponseEntity<Object> handleException(BaseException ex) {
         return ResponseEntity.status(ex.getHttpStatus()).body(BaseExceptionResponse.of(ex.getMessage()));
     }
