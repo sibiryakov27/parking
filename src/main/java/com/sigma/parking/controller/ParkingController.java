@@ -4,6 +4,7 @@ import com.sigma.parking.data.dto.BookingDTO;
 import com.sigma.parking.data.dto.CarDTO;
 import com.sigma.parking.service.ParkingService;
 import lombok.AllArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/parking")
 @AllArgsConstructor
+@Validated
 public class ParkingController {
 
     private ParkingService parkingService;
@@ -36,7 +38,7 @@ public class ParkingController {
 
     @DeleteMapping("/car/{carNumber}")
     public CarDTO removeCarAndAllRelatedData(
-            @PathVariable @Pattern(regexp = "^[A-Za-z]\\d{3}[A-Za-z]{2}\\d{1,3}$") String carNumber
+            @PathVariable(name = "carNumber") @Pattern(regexp = "^[A-Za-z]\\d{3}[A-Za-z]{2}\\d{1,3}$") String carNumber
     ) {
         return parkingService.removeCarAndAllRelatedData(carNumber);
     }

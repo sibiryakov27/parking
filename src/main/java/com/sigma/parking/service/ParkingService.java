@@ -50,6 +50,7 @@ public class ParkingService {
         if (bookingEntity.isEmpty()) {
             throw new NotFoundException("Booking with such id cannot be found [id = " + id + "]");
         }
+        booking.setId(id);
         return saveBooking(booking);
     }
 
@@ -58,6 +59,7 @@ public class ParkingService {
         if (car.isEmpty()) {
             throw new NotFoundException("Car with such number cannot be found [carNumber = " + carNumber + "]");
         }
+        carRepository.delete(car.get());
         return modelMapper.map(car.get(), CarDTO.class);
     }
 }
