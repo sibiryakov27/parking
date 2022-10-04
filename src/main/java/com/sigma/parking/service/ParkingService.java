@@ -44,6 +44,11 @@ public class ParkingService {
         return modelMapper.map(bookingEntity, BookingDTO.class);
     }
 
+    public BookingDTO updateBooking(BookingDTO booking, Integer id) {
+        Optional<BookingEntity> bookingEntity = bookingRepository.findById(id);
+        return saveBooking(booking);
+    }
+
     public CarDTO removeCarAndAllRelatedData(String carNumber) {
         Optional<CarEntity> car = carRepository.findByCarNumber(carNumber);
         return modelMapper.map(car.get(), CarDTO.class);
