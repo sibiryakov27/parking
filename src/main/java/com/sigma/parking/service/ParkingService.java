@@ -5,6 +5,7 @@ import com.sigma.parking.data.dto.CarDTO;
 import com.sigma.parking.data.entity.BookingEntity;
 import com.sigma.parking.data.entity.CarEntity;
 import com.sigma.parking.data.entity.ParkingSpaceEntity;
+import com.sigma.parking.exception.NotFoundException;
 import com.sigma.parking.repository.BookingRepository;
 import com.sigma.parking.repository.CarRepository;
 import com.sigma.parking.repository.ParkingSpaceRepository;
@@ -46,11 +47,17 @@ public class ParkingService {
 
     public BookingDTO updateBooking(BookingDTO booking, Integer id) {
         Optional<BookingEntity> bookingEntity = bookingRepository.findById(id);
+        if (bookingEntity.isEmpty()) {
+            throw new NotFoundException("Booking with such id cannot be found [id = " + id + "]");
+        }
         return saveBooking(booking);
     }
 
     public CarDTO removeCarAndAllRelatedData(String carNumber) {
         Optional<CarEntity> car = carRepository.findByCarNumber(carNumber);
+        if (car.isEmpty()) {
+            throw new NotFoundException("Car with such number cannot be found [carNumber = " + carNumber + "]");
+        }
         return modelMapper.map(car.get(), CarDTO.class);
     }
 }
